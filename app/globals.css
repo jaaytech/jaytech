@@ -6,28 +6,10 @@
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
   --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
   --color-gold: var(--gold);
-
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
 }
 
 :root {
@@ -39,21 +21,7 @@
   --primary: #2f6bff;
   --gold: #c9ab72;
 
-  --card: color-mix(in oklab, var(--foreground) 2.5%, var(--background));
-  --card-foreground: var(--foreground);
-  --popover: var(--card);
-  --popover-foreground: var(--foreground);
-  --primary-foreground: var(--foreground);
-  --secondary: color-mix(in oklab, var(--foreground) 6%, var(--background));
-  --secondary-foreground: var(--foreground);
-  --muted: color-mix(in oklab, var(--foreground) 5%, var(--background));
-  --accent: color-mix(in oklab, var(--primary) 14%, var(--background));
-  --accent-foreground: var(--foreground);
-  --destructive: #e5484d;
   --border: color-mix(in oklab, var(--foreground) 9%, transparent);
-  --input: color-mix(in oklab, var(--foreground) 12%, transparent);
-  --ring: var(--primary);
-  --radius: 0.25rem;
 }
 
 @layer base {
@@ -66,6 +34,10 @@
   body {
     @apply bg-background text-foreground font-sans;
     font-feature-settings: 'ss01', 'cv11';
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
   }
   ::selection {
     background: color-mix(in oklab, var(--primary) 55%, transparent);
@@ -114,10 +86,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
   html {
     scroll-behavior: auto;
   }
-  .text-metallic {
-    animation: none;
+}
+
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

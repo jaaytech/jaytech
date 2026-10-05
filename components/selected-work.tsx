@@ -38,7 +38,7 @@ const projects = [
 
 export function SelectedWork() {
   return (
-    <section id="work" className="relative scroll-mt-16 px-6 py-28 md:px-10 md:py-44">
+    <section id="work" tabIndex={-1} className="relative scroll-mt-16 px-6 py-28 md:px-10 md:py-44">
       <div className="mx-auto max-w-[75rem]">
         <SectionHeader code="SYS.03" label="Selected Work" />
 
@@ -57,7 +57,12 @@ export function SelectedWork() {
 
         <ul className="mt-16 border-t border-border md:mt-24">
           {projects.map((project, index) => (
-            <li key={project.name} className="group relative border-b border-border">
+            <li
+              key={project.name}
+              tabIndex={0}
+              aria-labelledby={`project-${index}`}
+              className="group relative border-b border-border"
+            >
               <Reveal delay={index * 0.08}>
                 <span
                   aria-hidden="true"
@@ -73,7 +78,7 @@ export function SelectedWork() {
                     {project.year}
                   </span>
 
-                  <h3 className="col-span-12 text-4xl font-medium tracking-[-0.04em] text-foreground transition-transform duration-700 ease-out group-hover:translate-x-3 md:col-span-5 md:text-6xl">
+                  <h3 id={`project-${index}`} className="col-span-12 text-4xl font-medium tracking-[-0.04em] text-foreground transition-transform duration-700 ease-out group-hover:translate-x-3 md:col-span-5 lg:text-6xl">
                     {project.name}
                   </h3>
 
@@ -81,7 +86,7 @@ export function SelectedWork() {
                     {project.category}
                   </span>
 
-                  <div className="col-span-12 grid grid-rows-[1fr] transition-[grid-template-rows] duration-700 ease-out [@media(hover:hover)]:grid-rows-[0fr] group-hover:grid-rows-[1fr] md:col-start-3 md:col-end-12">
+                  <div className="col-span-12 grid grid-rows-[1fr] transition-[grid-template-rows] duration-700 ease-out [@media(hover:hover)]:grid-rows-[0fr] group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr] md:col-start-3 md:col-end-12">
                     <div className="overflow-hidden">
                       <div className="flex flex-col gap-5 pt-6 md:flex-row md:items-end md:justify-between md:gap-12">
                         <p className="max-w-xl text-base leading-relaxed text-muted-foreground">

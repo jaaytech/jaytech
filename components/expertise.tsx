@@ -42,7 +42,7 @@ const disciplines = [
 
 export function Expertise() {
   return (
-    <section id="expertise" className="relative scroll-mt-16 px-6 py-28 md:px-10 md:py-44">
+    <section id="expertise" tabIndex={-1} className="relative scroll-mt-16 px-6 py-28 md:px-10 md:py-44">
       <div className="mx-auto max-w-[75rem]">
         <SectionHeader code="SYS.02" label="Expertise" />
 
@@ -81,7 +81,7 @@ export function Expertise() {
                 </div>
 
                 <div className="relative flex flex-col gap-5">
-                  <h3 className="text-3xl font-medium tracking-[-0.03em] text-foreground md:text-4xl">
+                  <h3 className="text-3xl font-medium tracking-[-0.03em] text-foreground md:text-2xl lg:text-4xl">
                     {item.title}
                   </h3>
                   <p className="text-base leading-relaxed text-muted-foreground">{item.summary}</p>

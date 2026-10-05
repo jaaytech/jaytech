@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <>
       <SiteNav />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <About />
         <Expertise />
