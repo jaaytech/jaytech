@@ -313,10 +313,14 @@ export function Hero() {
             <FadeIn delay={0.82}>
               <p className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-2 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-muted-foreground sm:text-[11px]">
                 <span>Systems Administrator</span>
-                <span aria-hidden="true" className="text-gold">/</span>
-                <span>Developer</span>
-                <span aria-hidden="true" className="text-gold">/</span>
-                <span>AI Specialist</span>
+                <span className="whitespace-nowrap">
+                  <span aria-hidden="true" className="mr-3 text-gold">/</span>{' '}
+                  Developer
+                </span>
+                <span className="whitespace-nowrap">
+                  <span aria-hidden="true" className="mr-3 text-gold">/</span>{' '}
+                  AI Specialist
+                </span>
               </p>
             </FadeIn>
           </div>
