@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: var(--font-geist), 'Geist Fallback', ui-sans-serif, system-ui;
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback', ui-monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: dark;
+  /* Palette: obsidian, bone white, steel gray, electric blue, brushed gold */
+  --background: #050608;
+  --foreground: #edeff3;
+  --muted-foreground: #7d838e;
+  --primary: #2f6bff;
+  --gold: #c9ab72;
+
+  --card: color-mix(in oklab, var(--foreground) 2.5%, var(--background));
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary-foreground: var(--foreground);
+  --secondary: color-mix(in oklab, var(--foreground) 6%, var(--background));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --accent: color-mix(in oklab, var(--primary) 14%, var(--background));
+  --accent-foreground: var(--foreground);
+  --destructive: #e5484d;
+  --border: color-mix(in oklab, var(--foreground) 9%, transparent);
+  --input: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --ring: var(--primary);
+  --radius: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 55%, transparent);
+    color: var(--foreground);
+  }
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+@utility bg-grid-bright {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--primary) 45%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--primary) 45%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+@utility text-metallic {
+  background-image: linear-gradient(
+    100deg,
+    color-mix(in oklab, var(--gold) 70%, var(--background)) 0%,
+    var(--gold) 30%,
+    color-mix(in oklab, var(--gold) 55%, var(--foreground)) 50%,
+    var(--gold) 70%,
+    color-mix(in oklab, var(--gold) 70%, var(--background)) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: sheen 9s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .text-metallic {
+    animation: none;
+  }
+}
