@@ -78,7 +78,7 @@ export function SelectedWork() {
                     {project.year}
                   </span>
 
-                  <h3 id={`project-${index}`} className="col-span-12 text-4xl font-medium tracking-[-0.04em] text-foreground transition-transform duration-700 ease-out group-hover:translate-x-3 md:col-span-5 md:text-6xl">
+                  <h3 id={`project-${index}`} className="col-span-12 text-4xl font-medium tracking-[-0.04em] text-foreground transition-transform duration-700 ease-out group-hover:translate-x-3 md:col-span-5 lg:text-6xl">
                     {project.name}
                   </h3>
 

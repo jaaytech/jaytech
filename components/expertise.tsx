@@ -81,7 +81,7 @@ export function Expertise() {
                 </div>
 
                 <div className="relative flex flex-col gap-5">
-                  <h3 className="text-3xl font-medium tracking-[-0.03em] text-foreground md:text-4xl">
+                  <h3 className="text-3xl font-medium tracking-[-0.03em] text-foreground md:text-2xl lg:text-4xl">
                     {item.title}
                   </h3>
                   <p className="text-base leading-relaxed text-muted-foreground">{item.summary}</p>
