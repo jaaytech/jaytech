@@ -10,19 +10,19 @@ const facts = [
 
 export function About() {
   return (
-    <section id="about" className="relative scroll-mt-16 px-6 py-28 md:px-10 md:py-44">
+    <section id="about" tabIndex={-1} className="relative scroll-mt-16 px-6 py-28 md:px-10 md:py-44">
       <div className="mx-auto max-w-[75rem]">
         <SectionHeader code="SYS.01" label="About" />
 
         <div className="mt-16 grid gap-16 md:mt-24 md:grid-cols-12 md:gap-6">
           <Reveal className="md:col-span-8">
-            <p className="text-pretty text-3xl font-medium leading-[1.15] tracking-[-0.03em] text-muted-foreground md:text-5xl lg:text-6xl">
+            <h2 className="text-pretty text-3xl font-medium leading-[1.15] tracking-[-0.03em] text-muted-foreground md:text-5xl lg:text-6xl">
               I build and operate the{' '}
               <span className="text-foreground">systems behind modern work</span>{' '}—
               reliable infrastructure, software that solves real problems, and{' '}
               <span className="text-foreground">AI that makes operations smarter</span>
               <span className="text-primary">.</span>
-            </p>
+            </h2>
           </Reveal>
 
           <Reveal delay={0.15} className="md:col-span-4 md:pt-3">

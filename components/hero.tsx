@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useMotionTemplate, useMotionValue, useSpring } from 'motion/react'
+import { motion, useMotionTemplate, useMotionValue, useReducedMotion, useSpring } from 'motion/react'
 import { ArrowDown } from 'lucide-react'
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -9,6 +9,7 @@ function MaskLine({ children, delay }: { children: React.ReactNode; delay: numbe
   return (
     <span className="block overflow-hidden pb-[0.04em]">
       <motion.span
+        data-reveal
         className="block"
         initial={{ y: '105%' }}
         animate={{ y: 0 }}
@@ -31,6 +32,7 @@ function FadeIn({
 }) {
   return (
     <motion.div
+      data-reveal
       className={className}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -42,6 +44,7 @@ function FadeIn({
 }
 
 export function Hero() {
+  const reducedMotion = useReducedMotion()
   const mouseX = useMotionValue(-1000)
   const mouseY = useMotionValue(-1000)
   const x = useSpring(mouseX, { stiffness: 120, damping: 24, mass: 0.6 })
@@ -49,6 +52,7 @@ export function Hero() {
   const mask = useMotionTemplate`radial-gradient(260px circle at ${x}px ${y}px, black, transparent 75%)`
 
   function handlePointerMove(event: React.PointerEvent<HTMLElement>) {
+    if (reducedMotion || event.pointerType !== 'mouse') return
     const rect = event.currentTarget.getBoundingClientRect()
     mouseX.set(event.clientX - rect.left)
     mouseY.set(event.clientY - rect.top)
@@ -73,7 +77,7 @@ export function Hero() {
       <motion.div
         aria-hidden="true"
         style={{ maskImage: mask, WebkitMaskImage: mask }}
-        className="bg-grid-bright pointer-events-none absolute inset-0 -z-10 hidden md:block"
+        className="bg-grid-bright pointer-events-none absolute inset-0 -z-10 hidden md:block motion-reduce:!hidden"
       />
       {/* Overhead electric blue key light */}
       <motion.div

@@ -10,6 +10,7 @@ export function Contact() {
   return (
     <section
       id="contact"
+      tabIndex={-1}
       className="relative isolate scroll-mt-16 overflow-hidden px-6 pb-16 pt-28 md:px-10 md:pt-44"
     >
       <div
