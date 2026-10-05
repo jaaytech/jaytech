@@ -93,13 +93,14 @@
     transition: none !important;
   }
 
-  @media (prefers-reduced-motion: reduce), (scripting: none) {
-    [data-reveal] {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
   html {
     scroll-behavior: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
