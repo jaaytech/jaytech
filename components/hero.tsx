@@ -31,30 +31,66 @@ function Monogram() {
   return (
     <motion.div
       aria-hidden="true"
+      data-reveal
       initial={{ opacity: 0, scale: 0.94 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.25, delay: 0.45, ease: EASE }}
-      className="relative mx-auto aspect-square w-full max-w-[250px] md:mx-0"
+      className="relative mx-auto aspect-square w-full max-w-[210px] md:max-w-[264px]"
     >
-      <div className="absolute inset-[12%] rounded-full border border-foreground/15" />
-      <div className="absolute inset-[25%] rounded-full border border-primary/15" />
-      <div className="absolute left-1/2 top-[6%] h-[88%] w-px -translate-x-1/2 bg-foreground/12" />
-      <div className="absolute left-[6%] top-1/2 h-px w-[88%] -translate-y-1/2 bg-foreground/12" />
-      <div className="absolute inset-x-[17%] bottom-[24%] h-px bg-[linear-gradient(90deg,transparent,var(--primary),var(--gold),transparent)] opacity-90 shadow-[0_0_18px_color-mix(in_oklab,var(--primary)_45%,transparent)]" />
+      <svg viewBox="0 0 280 280" fill="none" className="size-full" focusable="false">
+        <defs>
+          <linearGradient id="markSilver" x1="70" y1="74" x2="140" y2="202" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#fff" />
+            <stop offset=".48" stopColor="#e2e7ef" />
+            <stop offset="1" stopColor="#8895a9" />
+          </linearGradient>
+          <linearGradient id="markGold" x1="148" y1="82" x2="218" y2="206" gradientUnits="userSpaceOnUse">
+            <stop stopColor="#f1dfb5" />
+            <stop offset=".46" stopColor="var(--gold)" />
+            <stop offset="1" stopColor="#8b6935" />
+          </linearGradient>
+          <linearGradient id="markDatum">
+            <stop stopColor="var(--primary)" stopOpacity="0" />
+            <stop offset=".38" stopColor="var(--primary)" stopOpacity=".7" />
+            <stop offset=".7" stopColor="var(--gold)" stopOpacity=".8" />
+            <stop offset="1" stopColor="var(--gold)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
 
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="translate-x-[0.08em] text-[clamp(7rem,13vw,10.5rem)] font-semibold leading-none tracking-[-0.16em] text-foreground">
-          J
-        </span>
-        <span className="-ml-[0.04em] translate-y-[0.04em] text-[clamp(7rem,13vw,10.5rem)] font-light leading-none tracking-[-0.14em] text-metallic">
-          A
-        </span>
-      </div>
+        <g stroke="var(--foreground)" strokeOpacity=".12" strokeWidth=".7">
+          <circle cx="140" cy="140" r="112" />
+          <circle cx="140" cy="140" r="88" />
+          <path d="M12 140H268M140 12V268M38 74H246M38 196H246" />
+          <path d="M62 48V222M118 48V222M188 48V222" strokeDasharray="2 5" />
+          <path d="M38 242L126 26M144 26L232 242" stroke="var(--gold)" />
+          <circle cx="98" cy="151" r="45" />
+        </g>
+        <g stroke="var(--primary)" strokeOpacity=".38" strokeWidth=".8">
+          <path d="M28 128V112M28 152V168M128 28H112M152 28H168" />
+          <path d="M252 112V128M252 152V168M112 252H128M152 252H168" />
+          <circle cx="140" cy="140" r="125" strokeDasharray="1 12" />
+        </g>
 
-      <div className="absolute right-[9%] top-1/2 size-5 -translate-y-1/2">
-        <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-foreground/45" />
-        <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-foreground/45" />
-      </div>
+        <path
+          d="M62 74H140V149C140 178 124 196 98 196C74 196 57 182 53 161L75 155C77 168 86 175 98 175C111 175 118 165 118 149V96H62Z"
+          fill="url(#markSilver)"
+        />
+        <path
+          d="M173 74H188L232 196H208L199 169H156L146 196H123L173 74ZM163 149H192L178 108Z"
+          fill="url(#markGold)"
+          fillRule="evenodd"
+        />
+        <path d="M63 75H139M174 75H187L230 194" stroke="var(--foreground)" strokeOpacity=".55" strokeWidth=".7" />
+        <path d="M28 206H252" stroke="url(#markDatum)" />
+        <g stroke="var(--foreground)" strokeOpacity=".5" strokeWidth=".8">
+          <path d="M246 140H258M252 134V146M134 28H146M140 22V34" />
+        </g>
+        <g fill="var(--gold)">
+          <circle cx="62" cy="74" r="1.8" />
+          <circle cx="188" cy="74" r="1.8" />
+          <circle cx="140" cy="252" r="1.8" />
+        </g>
+      </svg>
     </motion.div>
   )
 }
@@ -202,15 +238,16 @@ export function Hero() {
           </span>
         </FadeIn>
 
-        <div className="relative my-auto grid items-center gap-10 py-14 md:grid-cols-12 md:gap-8 lg:py-10">
+        <div className="relative my-auto grid items-center gap-8 py-10 md:grid-cols-12 md:gap-7 md:py-16 lg:py-14">
           <div className="md:col-span-4 lg:col-span-3">
             <Monogram />
           </div>
 
           <div className="relative z-10 md:col-span-8 lg:col-span-7">
             <FadeIn delay={0.55}>
-              <p className="text-metallic mb-4 font-mono text-sm uppercase tracking-[0.52em] md:text-base">
-                Jaytech
+              <p className="mb-5 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.42em] md:mb-6 md:text-xs">
+                <span aria-hidden="true" className="h-px w-7 bg-gold/65" />
+                <span className="text-metallic">Jaytech</span>
               </p>
             </FadeIn>
 
@@ -219,21 +256,24 @@ export function Hero() {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.15, delay: 0.65, ease: EASE }}
-              className="text-[clamp(3.35rem,8.3vw,7.6rem)] uppercase leading-[0.92] tracking-[-0.055em]"
+              className="hero-name uppercase"
             >
-              <span className="font-semibold text-foreground">Javier</span>{' '}
-              <span className="font-light text-foreground/72">Alva</span>
+              <span className="hero-name-given">Javier</span>{' '}
+              <span className="hero-name-family">Alva</span>
             </motion.h1>
 
             <FadeIn delay={0.82}>
-              <p className="mt-5 font-mono text-[10px] uppercase leading-relaxed tracking-[0.2em] text-muted-foreground sm:text-xs">
-                Systems Administrator <span className="text-gold">·</span> Developer{' '}
-                <span className="text-gold">·</span> AI Specialist
+              <p className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-2 font-mono text-[10px] uppercase leading-relaxed tracking-[0.14em] text-muted-foreground sm:text-[11px]">
+                <span>Systems Administrator</span>
+                <span aria-hidden="true" className="text-gold">/</span>
+                <span>Developer</span>
+                <span aria-hidden="true" className="text-gold">/</span>
+                <span>AI Specialist</span>
               </p>
             </FadeIn>
           </div>
 
-          <div className="pointer-events-none absolute -left-2 top-1/2 hidden -translate-y-1/2 flex-col gap-8 font-mono text-[10px] tracking-[0.22em] text-muted-foreground/35 xl:flex">
+          <div aria-hidden="true" className="pointer-events-none absolute -left-8 top-1/2 hidden -translate-y-1/2 flex-col gap-8 font-mono text-[10px] tracking-[0.22em] text-muted-foreground/35 xl:flex">
             <span className="border-l border-gold pl-4 text-foreground">01</span>
             <span className="border-l border-border pl-4">02</span>
             <span className="border-l border-border pl-4">03</span>
