@@ -99,78 +99,121 @@ function TechGlobe() {
   return (
     <motion.div
       aria-hidden="true"
+      data-reveal
       initial={{ opacity: 0, x: 60 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1.8, delay: 0.6, ease: EASE }}
-      className="pointer-events-none absolute -right-[22rem] top-[7rem] hidden size-[760px] lg:block xl:-right-[18rem] 2xl:-right-[13rem]"
+      className="pointer-events-none absolute -right-[20rem] top-1/2 hidden size-[720px] -translate-y-1/2 lg:block xl:-right-[18rem] 2xl:-right-[16rem]"
     >
-      <div className="absolute inset-[8%] rounded-full bg-primary/8 blur-3xl" />
-      <svg viewBox="0 0 720 720" className="hero-globe relative size-full overflow-visible">
+      <svg viewBox="0 0 720 720" className="hero-globe relative size-full overflow-visible" fill="none" focusable="false">
         <defs>
-          <radialGradient id="globeGlow" cx="35%" cy="42%" r="68%">
-            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.16" />
-            <stop offset="58%" stopColor="var(--primary)" stopOpacity="0.06" />
+          <radialGradient id="globeGlow" cx="58%" cy="38%" r="62%">
+            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.2" />
+            <stop offset="58%" stopColor="var(--primary)" stopOpacity="0.07" />
             <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
           </radialGradient>
-          <linearGradient id="globeEdge" x1="0%" y1="15%" x2="100%" y2="80%">
-            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.08" />
-            <stop offset="58%" stopColor="var(--primary)" stopOpacity="0.55" />
-            <stop offset="100%" stopColor="var(--foreground)" stopOpacity="0.18" />
+          <linearGradient id="globeEdge" x1="0%" y1="85%" x2="100%" y2="15%">
+            <stop stopColor="var(--primary)" stopOpacity=".08" />
+            <stop offset=".5" stopColor="#7daaff" stopOpacity=".65" />
+            <stop offset="1" stopColor="var(--primary)" stopOpacity=".2" />
           </linearGradient>
-          <pattern id="dotField" width="16" height="16" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.15" fill="var(--foreground)" fillOpacity="0.42" />
+          <pattern id="dotField" width="8" height="8" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r=".8" fill="#8cabdd" />
+          </pattern>
+          <pattern id="landDots" width="5" height="5" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1" fill="#aacaff" />
           </pattern>
           <clipPath id="globeClip">
-            <circle cx="360" cy="360" r="270" />
+            <circle cx="360" cy="344" r="250" />
           </clipPath>
-          <radialGradient id="dotFade" cx="45%" cy="45%" r="65%">
-            <stop offset="0%" stopColor="white" stopOpacity="1" />
-            <stop offset="80%" stopColor="white" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          <radialGradient id="dotFade" cx="60%" cy="35%" r="65%">
+            <stop stopColor="white" />
+            <stop offset=".65" stopColor="white" stopOpacity=".7" />
+            <stop offset="1" stopColor="white" stopOpacity=".1" />
           </radialGradient>
           <mask id="dotMask">
-            <circle cx="360" cy="360" r="270" fill="url(#dotFade)" />
+            <circle cx="360" cy="344" r="250" fill="url(#dotFade)" />
           </mask>
+          <radialGradient id="nodeGlow">
+            <stop stopColor="#a9ccff" stopOpacity=".65" />
+            <stop offset=".25" stopColor="var(--primary)" stopOpacity=".3" />
+            <stop offset="1" stopColor="var(--primary)" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id="orbitLight" x1="0%" y1="85%" x2="100%" y2="20%">
+            <stop stopColor="var(--primary)" stopOpacity="0" />
+            <stop offset=".5" stopColor="#89b5ff" stopOpacity=".6" />
+            <stop offset="1" stopColor="var(--primary)" stopOpacity=".1" />
+          </linearGradient>
         </defs>
 
-        <circle cx="360" cy="360" r="270" fill="url(#globeGlow)" />
-        <circle cx="360" cy="360" r="270" fill="url(#dotField)" mask="url(#dotMask)" opacity="0.55" />
-        <circle cx="360" cy="360" r="270" fill="none" stroke="url(#globeEdge)" strokeWidth="1.5" />
-
-        <g clipPath="url(#globeClip)" fill="none" stroke="var(--primary)" strokeOpacity="0.18" strokeWidth="1">
-          <ellipse cx="360" cy="360" rx="270" ry="92" />
-          <ellipse cx="360" cy="360" rx="270" ry="168" />
-          <ellipse cx="360" cy="360" rx="102" ry="270" />
-          <ellipse cx="360" cy="360" rx="188" ry="270" />
-          <path d="M100 332 C230 265 490 265 620 332" />
-          <path d="M105 410 C250 475 480 475 615 410" />
+        <circle cx="360" cy="344" r="320" fill="url(#globeGlow)" />
+        <g stroke="var(--primary)" strokeWidth=".7">
+          <circle cx="360" cy="344" r="280" strokeOpacity=".14" />
+          <circle cx="360" cy="344" r="296" strokeOpacity=".3" strokeDasharray="1 13" />
+          <path d="M104 213A288 288 0 0 1 545 124M600 504A288 288 0 0 1 280 620" strokeOpacity=".35" />
+          <path d="M92 338H108M612 338H628M354 76V92M354 596V612" strokeOpacity=".5" />
         </g>
+        <g clipPath="url(#globeClip)">
+          <g mask="url(#dotMask)">
+            <circle cx="360" cy="344" r="250" fill="url(#dotField)" opacity=".25" />
+            <g fill="url(#landDots)" opacity=".8">
+              <path d="M148 205L176 169L212 154L235 171L266 172L290 193L278 213L253 225L245 251L225 259L226 281L208 272L195 243L175 231L167 211Z" />
+              <path d="M227 289L250 298L273 327L303 335L319 367L303 396L298 435L281 469L269 498L252 506L249 477L256 443L239 413L237 379L223 352L215 318Z" />
+              <path d="M276 131L301 111L331 118L324 151L303 169L283 155Z" />
+              <path d="M336 202L353 185L378 189L386 171L406 164L420 184L408 211L383 226L354 224L344 240L327 230Z" />
+              <path d="M339 249L373 237L406 254L424 279L446 298L431 326L410 339L401 374L379 405L359 397L350 361L332 341L316 308L320 274Z" />
+              <path d="M415 158L454 142L493 158L528 172L553 197L583 215L596 246L574 269L545 262L531 288L509 299L496 279L474 280L451 255L426 260L410 232L423 206L436 191Z" />
+              <path d="M453 283L476 301L488 324L477 346L461 327ZM507 307L524 322L532 353L551 371L543 383L520 367L507 342Z" />
+              <path d="M506 413L533 394L562 403L578 431L556 452L525 450L503 435ZM422 382L430 396L419 428L410 416Z" />
+            </g>
+          </g>
+          <g stroke="#6595e8" strokeOpacity=".17" strokeWidth=".65" transform="rotate(-16 360 344)">
+            <ellipse cx="360" cy="344" rx="65" ry="250" />
+            <ellipse cx="360" cy="344" rx="145" ry="250" />
+            <ellipse cx="360" cy="344" rx="215" ry="250" />
+            <ellipse cx="360" cy="344" rx="250" ry="65" />
+            <ellipse cx="360" cy="344" rx="250" ry="145" />
+            <ellipse cx="360" cy="344" rx="250" ry="215" />
+            <path d="M110 344H610M360 94V594" />
+          </g>
 
+          <g stroke="#83b4ff" strokeWidth=".8">
+            <path d="M220 235L276 211L365 224L392 281L470 246L527 301L481 374L392 281L355 351L286 382L220 235L355 351L365 224M276 211L355 351L481 374L438 434L286 382L309 456" strokeOpacity=".26" />
+            <path d="M220 235Q301 137 470 246M220 235Q182 352 286 382M365 224Q471 204 481 374M286 382Q381 469 481 374" strokeOpacity=".5" />
+            <path d="M276 211L286 382M470 246L355 351L438 434M527 301L392 281" strokeOpacity=".2" strokeDasharray="2 5" />
+          </g>
+          {[
+            [220, 235], [276, 211], [365, 224], [392, 281], [470, 246],
+            [527, 301], [355, 351], [286, 382], [481, 374], [438, 434], [309, 456],
+          ].map(([cx, cy]) => (
+            <g key={`${cx}-${cy}`}>
+              <circle cx={cx} cy={cy} r="20" fill="url(#nodeGlow)" />
+              <circle cx={cx} cy={cy} r="5.5" stroke="#8bbcff" strokeOpacity=".4" strokeWidth=".7" />
+              <circle cx={cx} cy={cy} r="1.8" fill="#d8e9ff" />
+            </g>
+          ))}
+        </g>
+        <circle cx="360" cy="344" r="250" stroke="url(#globeEdge)" />
+        <g stroke="url(#orbitLight)" strokeWidth=".9">
+          <ellipse cx="360" cy="344" rx="322" ry="107" transform="rotate(-32 360 344)" />
+          <ellipse cx="360" cy="344" rx="310" ry="126" transform="rotate(24 360 344)" />
+          <path d="M94 199C229 39 496 24 640 182" />
+        </g>
         <g fill="var(--gold)">
-          <circle cx="244" cy="251" r="3.2" />
-          <circle cx="320" cy="340" r="3.2" />
-          <circle cx="286" cy="441" r="3.2" />
-        </g>
-        <g fill="none" stroke="var(--gold)" strokeOpacity="0.62" strokeWidth="1.2">
-          <path d="M244 251 H145" />
-          <path d="M320 340 H170" />
-          <path d="M286 441 H198" />
-        </g>
-        <g
-          fill="var(--foreground)"
-          fillOpacity="0.72"
-          fontFamily="var(--font-geist-mono)"
-          fontSize="11"
-          letterSpacing="2.2"
-        >
-          <text x="34" y="246">INFRASTRUCTURE</text>
-          <text x="74" y="335">SOFTWARE</text>
-          <text x="150" y="436">AI</text>
+          <circle cx="91" cy="455" r="2" />
+          <circle cx="595" cy="187" r="2" />
         </g>
 
-        <g fill="none" stroke="var(--primary)" strokeOpacity="0.2" strokeWidth="1">
-          <path d="M85 178 C218 42 467 25 635 147" />
-          <path d="M45 224 C198 42 514 18 684 200" />
+        <g stroke="var(--gold)" strokeOpacity=".55" strokeWidth=".8">
+          <path d="M248 482H284L326 440V395M248 516H308L369 455V351M248 550H333L415 468V434" />
+          <circle cx="326" cy="395" r="3" fill="var(--gold)" />
+          <circle cx="369" cy="351" r="3" fill="var(--gold)" />
+          <circle cx="415" cy="434" r="3" fill="var(--gold)" />
+        </g>
+        <g fill="var(--foreground)" fillOpacity=".8" fontFamily="var(--font-geist-mono)" fontSize="10" letterSpacing="1.8" textAnchor="end">
+          <text x="232" y="486">INFRASTRUCTURE</text>
+          <text x="232" y="520">SOFTWARE</text>
+          <text x="232" y="554">AI</text>
         </g>
       </svg>
     </motion.div>
@@ -220,8 +263,6 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 top-24 -z-10 size-[480px] rounded-full border border-primary/10 opacity-50 lg:hidden"
       />
 
-      <TechGlobe />
-
       <div className="mx-auto flex w-full max-w-[1380px] flex-1 flex-col px-6 pb-9 pt-10 md:px-10 md:pt-16 xl:px-14">
         <FadeIn
           delay={0.15}
@@ -231,7 +272,13 @@ export function Hero() {
             Personal Index
             <span className="hidden h-px w-20 bg-border md:block" />
           </span>
-          <span className="hidden sm:inline">Infrastructure / Software / AI</span>
+          <span className="hidden items-center gap-3 tracking-[0.18em] sm:flex md:gap-5">
+            <span>Infrastructure</span>
+            <span aria-hidden="true" className="text-gold/65">/</span>
+            <span>Software</span>
+            <span aria-hidden="true" className="text-gold/65">/</span>
+            <span>AI</span>
+          </span>
           <span className="flex items-center gap-4">
             MMXXVI
             <span className="hidden h-px w-12 bg-border md:block" />
@@ -239,6 +286,7 @@ export function Hero() {
         </FadeIn>
 
         <div className="relative my-auto grid items-center gap-8 py-10 md:grid-cols-12 md:gap-7 md:py-16 lg:py-14">
+          <TechGlobe />
           <div className="md:col-span-4 lg:col-span-3">
             <Monogram />
           </div>
